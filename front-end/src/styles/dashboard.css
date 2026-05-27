@@ -1,0 +1,517 @@
+.dashboard-layout {
+  display: block;
+}
+
+.dashboard-content {
+  min-width: 0;
+  padding: 20px 22px 22px;
+}
+
+.stats-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(5, minmax(145px, 1fr));
+  margin-bottom: 13px;
+}
+
+.stat-card {
+  align-items: center;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  display: flex;
+  justify-content: space-between;
+  min-height: 101px;
+  padding: 15px 13px 14px 15px;
+}
+
+.stat-card p {
+  color: #465367;
+  font-size: 12px;
+  margin-bottom: 7px;
+}
+
+.stat-card strong {
+  display: block;
+  font-size: 24px;
+  line-height: 1;
+  margin-bottom: 9px;
+}
+
+.stat-card small {
+  color: #59687d;
+  font-size: 12px;
+}
+
+.stat-icon {
+  align-items: center;
+  border-radius: 50%;
+  display: flex;
+  height: 45px;
+  justify-content: center;
+  margin-left: 10px;
+  min-width: 45px;
+}
+
+.stat-icon svg {
+  height: 23px;
+  width: 23px;
+}
+
+.total .stat-icon,
+.atendimento .stat-icon { background: #e8f1ff; color: #1472ed; }
+.aberto .stat-icon { background: #fff2df; color: #f29a00; }
+.resolvido .stat-icon { background: #e1f8eb; color: #1eae5d; }
+.fechado .stat-icon { background: #eff2f7; color: #7d899b; }
+
+.charts-grid {
+  display: grid;
+  gap: 15px;
+  grid-template-columns: 0.9fr 1.1fr;
+  margin-bottom: 13px;
+}
+
+.chart-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  height: 260px;
+  min-width: 0;
+  padding: 16px 17px 10px;
+}
+
+.chart-card h2 {
+  font-size: 16px;
+  font-weight: 650;
+  margin-bottom: 8px;
+}
+
+.donut-area {
+  align-items: center;
+  display: flex;
+  height: 199px;
+}
+
+.chart-legend {
+  color: #354357;
+  font-size: 13px;
+  line-height: 2.2;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+}
+
+.chart-legend span,
+.report-legend span {
+  border-radius: 3px;
+  display: inline-block;
+  height: 10px;
+  margin-right: 9px;
+  width: 10px;
+}
+
+.new-ticket-panel {
+  background: white;
+  border-left: 1px solid var(--border);
+  min-height: calc(100vh - 78px);
+  padding: 0 17px;
+}
+
+.panel-title {
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  height: 56px;
+  justify-content: space-between;
+}
+
+.panel-title h2 {
+  font-size: 17px;
+}
+
+.reports-page {
+  padding-top: 18px;
+}
+
+.report-toolbar {
+  display: flex;
+  gap: 20px;
+  justify-content: flex-end;
+  margin-bottom: 18px;
+}
+
+.period-select {
+  align-items: center;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  color: #607088;
+  display: inline-flex;
+  gap: 12px;
+  height: 44px;
+  padding: 0 14px;
+}
+
+.period-select svg {
+  height: 19px;
+}
+
+.period-select select {
+  background: transparent;
+  border: 0;
+  color: #344054;
+  min-width: 145px;
+  outline: 0;
+}
+
+.report-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(2, minmax(400px, 1fr));
+}
+
+.report-card {
+  height: 326px;
+  padding: 17px 18px 0;
+}
+
+.report-card h2 {
+  margin-bottom: 9px;
+}
+
+.report-donut-area {
+  align-items: center;
+  display: flex;
+  height: 222px;
+}
+
+.donut-graphic {
+  height: 214px;
+  position: relative;
+  width: 48%;
+}
+
+.donut-center {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  left: 50%;
+  line-height: 1.35;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.donut-center strong {
+  font-size: 21px;
+}
+
+.donut-center small {
+  color: #637187;
+  font-size: 12px;
+}
+
+.pie-label {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.report-legend {
+  color: #344054;
+  flex: 1;
+  font-size: 13px;
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 15px;
+}
+
+.report-legend li {
+  align-items: center;
+  display: flex;
+  height: 32px;
+}
+
+.report-legend label {
+  flex: 1;
+}
+
+.report-legend small {
+  color: #344054;
+  font-weight: 400;
+}
+
+.chart-footer {
+  align-items: center;
+  border-top: 1px solid var(--border);
+  color: #68768b;
+  display: flex;
+  font-size: 13px;
+  height: 43px;
+  justify-content: space-between;
+}
+
+.chart-footer strong {
+  font-weight: 500;
+}
+
+.details-page {
+  padding-top: 18px;
+}
+
+.detail-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.detail-actions svg {
+  height: 18px;
+  width: 18px;
+}
+
+.details-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: minmax(500px, 1.18fr) minmax(360px, 0.9fr);
+}
+
+.detail-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 21px 21px;
+}
+
+.detail-card h2 {
+  font-size: 16px;
+  margin-bottom: 19px;
+}
+
+.ticket-identity {
+  align-items: center;
+  display: flex;
+  gap: 25px;
+  margin-bottom: 24px;
+}
+
+.identity-icon {
+  align-items: center;
+  background: #e9f2ff;
+  border-radius: 50%;
+  color: var(--blue);
+  display: inline-flex;
+  height: 64px;
+  justify-content: center;
+  width: 64px;
+}
+
+.identity-icon svg {
+  height: 29px;
+  width: 29px;
+}
+
+.ticket-identity strong {
+  color: var(--blue);
+  display: block;
+  font-size: 21px;
+  margin-bottom: 8px;
+}
+
+.ticket-identity h3 {
+  font-size: 19px;
+}
+
+.ticket-tags {
+  display: flex;
+  gap: 23px;
+  margin-bottom: 22px;
+}
+
+.ticket-tags > span {
+  align-items: center;
+  background: #eef5ff;
+  border-radius: 7px;
+  color: var(--blue);
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: 1fr 1fr;
+  min-width: 130px;
+  padding: 10px 15px;
+}
+
+.ticket-tags svg {
+  grid-row: 1 / 3;
+  height: 20px;
+  margin-right: 13px;
+  width: 20px;
+}
+
+.ticket-tags small,
+.details-meta small {
+  color: #64748b;
+  display: block;
+  font-size: 12px;
+}
+
+.ticket-tags b {
+  color: #344054;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.ticket-tags .priority-tag {
+  background: #fff1f2;
+  color: #ef4444;
+}
+
+.ticket-tags .status-tag {
+  min-width: 178px;
+}
+
+.ticket-tags .badge {
+  background: transparent;
+  justify-content: flex-start;
+  padding: 0;
+}
+
+.ticket-description {
+  border-bottom: 1px solid var(--border);
+  border-top: 1px solid var(--border);
+  padding: 25px 0;
+}
+
+.ticket-description h3 {
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.ticket-description p {
+  color: #526278;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.details-meta {
+  display: grid;
+  gap: 0 58px;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.person-info,
+.meta-info {
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  gap: 16px;
+  min-height: 91px;
+}
+
+.person-info strong,
+.meta-info strong {
+  display: block;
+  font-size: 15px;
+  margin: 7px 0 5px;
+}
+
+.person-info p,
+.meta-info p {
+  color: #637187;
+  font-size: 12px;
+}
+
+.meta-info > svg {
+  background: #ebf3ff;
+  border-radius: 50%;
+  color: var(--blue);
+  height: 52px;
+  padding: 14px;
+  width: 52px;
+}
+
+.priority-meta > svg {
+  background: #fff0f1;
+  color: #ef4444;
+}
+
+.history-card {
+  padding-left: 24px;
+}
+
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.timeline li {
+  display: flex;
+  gap: 19px;
+  min-height: 112px;
+  position: relative;
+}
+
+.timeline li:not(:last-child)::before {
+  background: #e1e7f0;
+  bottom: 0;
+  content: "";
+  left: 23px;
+  position: absolute;
+  top: 47px;
+  width: 2px;
+}
+
+.timeline-icon {
+  align-items: center;
+  border-radius: 50%;
+  display: flex;
+  flex-shrink: 0;
+  height: 47px;
+  justify-content: center;
+  width: 47px;
+}
+
+.timeline-icon svg {
+  height: 23px;
+  width: 23px;
+}
+
+.resolvido .timeline-icon { background: #e1f8eb; color: #12ad5b; }
+.atendimento .timeline-icon { background: #e6f1ff; color: var(--blue); }
+.pendente .timeline-icon { background: #fff2de; color: #f49a00; }
+.aberto .timeline-icon { background: #eef1f5; color: #637187; }
+.sistema .timeline-icon { background: #f2f4f7; color: #9aa5b4; }
+
+.timeline-copy {
+  flex: 1;
+  padding-top: 10px;
+}
+
+.timeline-copy div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.timeline-copy strong {
+  font-size: 15px;
+}
+
+.resolvido .timeline-copy strong { color: #12ad5b; }
+.atendimento .timeline-copy strong,
+.aberto .timeline-copy strong { color: var(--blue); }
+.pendente .timeline-copy strong { color: #ed9400; }
+
+.timeline-copy time,
+.timeline-copy p,
+.timeline-copy small {
+  color: #637187;
+  font-size: 13px;
+}
+
+.timeline-copy p {
+  margin: 15px 0;
+}

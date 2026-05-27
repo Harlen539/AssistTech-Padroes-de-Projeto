@@ -1,0 +1,46 @@
+.badge {
+  align-items: center;
+  border-radius: 7px;
+  display: inline-flex;
+  font-size: 12px;
+  font-weight: 500;
+  justify-content: center;
+  min-width: 62px;
+  gap: 6px;
+  padding: 6px 10px;
+}
+
+.badge-dot {
+  background: currentColor;
+  border-radius: 50%;
+  display: inline-block;
+  height: 7px;
+  width: 7px;
+}
+
+.priority-alta {
+  background: #ffe5e6;
+  color: #dc333d;
+}
+
+.priority-media {
+  background: #fff0d0;
+  color: #cd8200;
+}
+
+.priority-baixa,
+.status-aberto,
+.status-em-atendimento {
+  background: #e3f0ff;
+  color: #006bff;
+}
+
+.status-resolvido {
+  background: #ddf7e7;
+  color: #13a14e;
+}
+
+.status-fechado {
+  background: #eff2f5;
+  color: #59687c;
+}

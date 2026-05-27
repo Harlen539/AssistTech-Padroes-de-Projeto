@@ -1,0 +1,115 @@
+:root {
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+  color: #0f172a;
+  background: #f5f8fc;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  --navy: #082b5f;
+  --navy-deep: #061b3a;
+  --blue: #006bff;
+  --blue-bright: #0d79ff;
+  --cyan: #00d4ff;
+  --background: #f5f8fc;
+  --card: #ffffff;
+  --border: #e2e8f0;
+  --text: #0f172a;
+  --muted: #64748b;
+  --shadow: 0 5px 18px rgba(8, 43, 95, 0.06);
+  --radius: 14px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100vh;
+  margin: 0;
+}
+
+body {
+  min-width: 320px;
+  font-size: 14px;
+}
+
+@media (min-width: 1081px) {
+  body {
+    zoom: 0.8;
+  }
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: var(--blue);
+  text-decoration: none;
+}
+
+.primary-button,
+.outline-button {
+  align-items: center;
+  border-radius: 9px;
+  display: inline-flex;
+  font-size: 14px;
+  font-weight: 600;
+  gap: 8px;
+  height: 44px;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.primary-button {
+  background: linear-gradient(135deg, #006bff, #075fe3);
+  border: 1px solid var(--blue);
+  color: white;
+  box-shadow: 0 5px 12px rgba(8, 103, 232, 0.17);
+}
+
+.primary-button:hover {
+  background: linear-gradient(135deg, #075fe3, #0755c9);
+}
+
+.outline-button {
+  background: #fff;
+  border: 1px solid #d7e0eb;
+  color: #36445a;
+}
+
+.icon-action {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  color: #3c4b61;
+  display: inline-flex;
+  height: 32px;
+  justify-content: center;
+  padding: 0;
+  width: 32px;
+}
+
+.icon-action svg {
+  height: 19px;
+  width: 19px;
+}
+
+.full-width {
+  width: 100%;
+}

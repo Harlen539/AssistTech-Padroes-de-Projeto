@@ -1,0 +1,8 @@
+node_modules/
+dist/
+*.log
+front-end/assisttech-*-check.png
+front-end/assisttech-dashboard-final.png
+.DS_Store
+.env
+.env.*

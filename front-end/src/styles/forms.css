@@ -1,0 +1,262 @@
+.ticket-form,
+.management-form-content {
+  display: flex;
+  flex-direction: column;
+  gap: 23px;
+}
+
+.panel-form {
+  gap: 18px;
+  padding-top: 19px;
+}
+
+.ticket-form label,
+.management-form-content label,
+.form-field {
+  color: #27354b;
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+  font-weight: 600;
+  gap: 9px;
+}
+
+.ticket-form em,
+.management-form-content em {
+  color: #e43a46;
+  font-style: normal;
+}
+
+.field-label {
+  display: inline-flex;
+  gap: 3px;
+}
+
+.ticket-form input,
+.ticket-form textarea,
+.ticket-form select,
+.management-form-content input,
+.management-form-content select {
+  background: white;
+  border: 1px solid #d8e1ed;
+  border-radius: 6px;
+  color: #324052;
+  font-weight: 400;
+  outline: none;
+  padding: 0 13px;
+}
+
+.ticket-form input,
+.ticket-form select,
+.management-form-content input,
+.management-form-content select {
+  height: 44px;
+}
+
+.ticket-form textarea {
+  height: 181px;
+  padding-top: 12px;
+  resize: vertical;
+}
+
+.ticket-form input:focus,
+.ticket-form textarea:focus,
+.ticket-form select:focus,
+.management-form-content input:focus,
+.management-form-content select:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(0, 107, 255, 0.1);
+}
+
+.attachment-drop {
+  align-items: center;
+  background: white;
+  border: 1px dashed #cdd7e5;
+  border-radius: 10px;
+  color: #4e5c70;
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  font-weight: 400;
+  gap: 14px;
+  height: 112px;
+  justify-content: center;
+  line-height: 1.6;
+}
+
+.attachment-drop svg {
+  color: #74859b;
+  height: 28px;
+}
+
+.attachment-drop.wide {
+  gap: 4px;
+  height: 82px;
+}
+
+.attachment-title {
+  align-items: center;
+  display: flex;
+  gap: 12px;
+}
+
+.attachment-title svg {
+  height: 23px;
+  width: 23px;
+}
+
+.attachment-drop small {
+  color: #59687d;
+  font-size: 12px;
+}
+
+.panel-actions {
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 13px;
+  padding-top: 17px;
+}
+
+.form-feedback {
+  background: #eef5ff;
+  border-radius: 6px;
+  color: #075ecb;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.45;
+  padding: 11px;
+}
+
+.new-ticket-page {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+.form-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  width: 100%;
+}
+
+.form-card-heading {
+  align-items: center;
+  display: flex;
+  gap: 16px;
+  padding: 22px 26px 18px;
+}
+
+.form-card-heading h2 {
+  font-size: 19px;
+  margin-bottom: 7px;
+}
+
+.form-card-heading p {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.new-ticket-card {
+  max-width: 1185px;
+}
+
+.form-title-icon {
+  align-items: center;
+  background: #eaf3ff;
+  border-radius: 50%;
+  color: var(--blue);
+  display: inline-flex;
+  flex-shrink: 0;
+  height: 52px;
+  justify-content: center;
+  width: 52px;
+}
+
+.form-title-icon svg {
+  height: 25px;
+  width: 25px;
+}
+
+.full-ticket-form {
+  border-top: 1px solid var(--border);
+  gap: 20px;
+  padding: 21px 27px 0;
+}
+
+.full-ticket-form textarea {
+  height: 107px;
+}
+
+.form-card-actions {
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin: 3px -27px 0;
+  padding: 16px 27px;
+}
+
+.form-card-actions .primary-button {
+  min-width: 174px;
+}
+
+.register-grid {
+  align-items: start;
+  display: grid;
+  gap: 18px;
+  grid-template-columns: 314px minmax(540px, 1fr);
+  padding-top: 27px;
+}
+
+.registration-card {
+  padding: 0 19px 20px;
+}
+
+.registration-card .form-card-heading {
+  gap: 12px;
+  padding: 20px 0 22px;
+}
+
+.registration-card .form-card-heading h2 {
+  font-size: 18px;
+  margin: 0;
+}
+
+.management-form-content {
+  gap: 19px;
+}
+
+.management-form-content .primary-button {
+  margin-top: 2px;
+}
+
+.input-with-icon {
+  align-items: center;
+  display: flex;
+  position: relative;
+}
+
+.input-with-icon > svg {
+  color: #72839b;
+  height: 17px;
+  left: 13px;
+  position: absolute;
+  width: 17px;
+}
+
+.input-with-icon input,
+.input-with-icon select {
+  padding-left: 40px;
+  width: 100%;
+}
+
+.hidden-file {
+  height: 1px;
+  opacity: 0;
+  position: absolute;
+  width: 1px;
+}
