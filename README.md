@@ -220,10 +220,6 @@ Principais características:
 * Layout responsivo
 * Visual inspirado em sistemas SaaS administrativos
 
-## 👨‍💻 Autor
-
-Desenvolvido por **Harlen Henrick**.
-
 ## 📜 Licença
 
 Este projeto está licenciado sob a licença MIT.
