@@ -396,6 +396,47 @@
   line-height: 1.8;
 }
 
+.ticket-attachments {
+  border-bottom: 1px solid var(--border);
+  padding: 23px 0;
+}
+
+.ticket-attachments h3 {
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.ticket-attachment-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+}
+
+.ticket-attachment {
+  border: 1px solid #d8e1ed;
+  border-radius: 7px;
+  margin: 0;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.ticket-attachment img {
+  aspect-ratio: 16 / 10;
+  display: block;
+  object-fit: cover;
+  width: 100%;
+}
+
+.ticket-attachment figcaption {
+  color: #4e5c70;
+  font-size: 12px;
+  font-weight: 600;
+  overflow: hidden;
+  padding: 9px 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .details-meta {
   display: grid;
   gap: 0 58px;

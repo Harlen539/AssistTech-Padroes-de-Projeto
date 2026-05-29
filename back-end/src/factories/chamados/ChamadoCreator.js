@@ -22,6 +22,7 @@ export class ChamadoCreator {
       solicitante: dados.solicitante || 'Nao informado',
       tecnico: dados.tecnico || configuracao.tecnico,
       atualizadoEm,
+      anexos: Array.isArray(dados.anexos) ? dados.anexos : [],
       historico: [
         {
           status: 'Aberto',

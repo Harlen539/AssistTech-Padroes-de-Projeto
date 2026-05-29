@@ -47,6 +47,7 @@ const statusHistorico = {
 function DetalhesChamado({ chamados, avancarStatus, onMenuClick }) {
   const { id } = useParams();
   const chamado = chamados.find((item) => String(item.id) === id) ?? chamados[0];
+  const anexos = chamado.anexos ?? [];
   const solicitante = chamado.solicitante ?? 'Colaborador não informado';
   const atualizacao = statusHistorico[chamado.status] ?? statusHistorico.Aberto;
   const historico = [
@@ -89,6 +90,19 @@ function DetalhesChamado({ chamados, avancarStatus, onMenuClick }) {
               <h3>Descrição</h3>
               <p>{chamado.descricao || 'Descrição não informada para este chamado.'}</p>
             </div>
+            {anexos.length > 0 && (
+              <div className="ticket-attachments">
+                <h3>Anexos</h3>
+                <div className="ticket-attachment-grid">
+                  {anexos.map((anexo) => (
+                    <figure key={anexo.id ?? anexo.url} className="ticket-attachment">
+                      <img src={anexo.url} alt={anexo.nome ?? 'Imagem anexada ao chamado'} />
+                      <figcaption>{anexo.nome ?? 'Imagem anexada'}</figcaption>
+                    </figure>
+                  ))}
+                </div>
+              </div>
+            )}
             <div className="details-meta">
               <div className="person-info">
                 <PersonAvatar name={solicitante} />

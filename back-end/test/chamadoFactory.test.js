@@ -8,6 +8,7 @@ test('factory cria chamado de rede com tecnico e prioridade padrao da categoria'
     descricao: 'A VPN desconecta durante o trabalho remoto.',
     categoria: 'Rede',
     solicitante: 'Bruno Castro',
+    anexos: [{ nome: 'erro.png', url: 'data:image/png;base64,abc' }],
   }, 99);
 
   assert.equal(chamado.id, 99);
@@ -15,6 +16,7 @@ test('factory cria chamado de rede com tecnico e prioridade padrao da categoria'
   assert.equal(chamado.prioridade, 'Alta');
   assert.equal(chamado.tecnico, 'Marcos Vinicius');
   assert.equal(chamado.status, 'Aberto');
+  assert.deepEqual(chamado.anexos, [{ nome: 'erro.png', url: 'data:image/png;base64,abc' }]);
 });
 
 test('factory rejeita categoria desconhecida', () => {

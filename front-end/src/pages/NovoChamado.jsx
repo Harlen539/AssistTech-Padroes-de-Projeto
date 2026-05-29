@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import FormCard from '../components/FormCard';
 import Header from '../components/Header';
+import { criarAnexosDeImagem } from '../utils/imageAttachments';
 
 const formularioInicial = { titulo: '', descricao: '', categoria: '', solicitante: '' };
 
@@ -10,17 +11,23 @@ function NovoChamado({ adicionarChamado, usuarios, onMenuClick }) {
   const navigate = useNavigate();
   const [form, setForm] = useState(formularioInicial);
   const [mensagem, setMensagem] = useState('');
-  const [anexo, setAnexo] = useState('');
+  const [anexos, setAnexos] = useState([]);
 
   function alterar(event) {
     setForm((atual) => ({ ...atual, [event.target.name]: event.target.value }));
   }
 
+  async function anexarImagens(event) {
+    const imagens = await criarAnexosDeImagem(event.target.files);
+    setAnexos(imagens);
+  }
+
   async function enviar(event) {
     event.preventDefault();
-    const resposta = await adicionarChamado(form);
+    const resposta = await adicionarChamado({ ...form, anexos });
     setForm(formularioInicial);
-    setAnexo('');
+    setAnexos([]);
+    event.target.reset();
     setMensagem(
       resposta.offline
         ? 'Chamado salvo em modo visual/mockado, pois a API não respondeu.'
@@ -66,11 +73,21 @@ function NovoChamado({ adicionarChamado, usuarios, onMenuClick }) {
             </label>
             <div className="form-field">
               Anexos
-              <input className="hidden-file" id="novo-anexo" type="file" onChange={(event) => setAnexo(event.target.files?.[0]?.name ?? '')} />
+              <input className="hidden-file" id="novo-anexo" type="file" accept="image/*" multiple onChange={anexarImagens} />
               <label className="attachment-drop wide" htmlFor="novo-anexo">
-                <span className="attachment-title"><UploadCloud /> {anexo || 'Arraste arquivos aqui ou clique para selecionar'}</span>
-                <small>Tamanho máximo: 10MB por arquivo. Formatos aceitos: PDF, DOC, DOCX, XLS, XLSX, PNG, JPG, JPEG.</small>
+                <span className="attachment-title"><UploadCloud /> {anexos.length ? `${anexos.length} imagem(ns) selecionada(s)` : 'Arraste imagens aqui ou clique para selecionar'}</span>
+                <small>Formatos aceitos: PNG, JPG, JPEG, WEBP e outros formatos de imagem.</small>
               </label>
+              {anexos.length > 0 && (
+                <div className="attachment-preview-list">
+                  {anexos.map((anexo) => (
+                    <figure key={anexo.id} className="attachment-preview">
+                      <img src={anexo.url} alt={anexo.nome} />
+                      <figcaption>{anexo.nome}</figcaption>
+                    </figure>
+                  ))}
+                </div>
+              )}
             </div>
             {mensagem && <p className="form-feedback">{mensagem}</p>}
             <div className="form-card-actions">
