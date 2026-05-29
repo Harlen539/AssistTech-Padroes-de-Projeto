@@ -37,11 +37,11 @@ function Sidebar({ open, onClose }) {
           </NavLink>
         ))}
       </nav>
-      <a className="sidebar-footer" href="mailto:suporte@assisttech.com?subject=Central%20de%20Ajuda">
+      <NavLink className="sidebar-footer" to="/central-ajuda" onClick={onClose}>
         <CircleHelp />
         <span>Central de Ajuda</span>
         <ChevronRight />
-      </a>
+      </NavLink>
     </aside>
   );
 }

@@ -11,6 +11,13 @@ npm run dev
 
 A API sobe em `http://localhost:8080/api`.
 
+Para ativar a Central de Ajuda com IA, crie um arquivo `.env` dentro de `back-end`:
+
+```bash
+OPENAI_API_KEY=sua_chave_da_openai
+OPENAI_MODEL=gpt-4.1-mini
+```
+
 ## Endpoints principais
 
 - `GET /api/health`

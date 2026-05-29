@@ -8,6 +8,7 @@ import './styles/dashboard.css';
 import './styles/tables.css';
 import './styles/forms.css';
 import './styles/badges.css';
+import './styles/central-ajuda.css';
 import './styles/responsive.css';
 
 createRoot(document.getElementById('root')).render(

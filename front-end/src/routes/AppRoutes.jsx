@@ -8,6 +8,7 @@ const DetalhesChamado = lazy(() => import('../pages/DetalhesChamado'));
 const Usuarios = lazy(() => import('../pages/Usuarios'));
 const Tecnicos = lazy(() => import('../pages/Tecnicos'));
 const Relatorios = lazy(() => import('../pages/Relatorios'));
+const CentralAjuda = lazy(() => import('../pages/CentralAjuda'));
 
 function AppRoutes({ context }) {
   return (
@@ -21,6 +22,7 @@ function AppRoutes({ context }) {
         <Route path="/usuarios" element={<Usuarios {...context} />} />
         <Route path="/tecnicos" element={<Tecnicos {...context} />} />
         <Route path="/relatorios" element={<Relatorios {...context} />} />
+        <Route path="/central-ajuda" element={<CentralAjuda {...context} />} />
         <Route path="*" element={<Navigate to="/dashboard" replace />} />
       </Routes>
     </Suspense>
