@@ -12,7 +12,7 @@
 ![OpenAI](https://img.shields.io/badge/OPENAI-IA-412991?style=flat-square)
 ![Patterns](https://img.shields.io/badge/PATTERNS-FACTORY%20%7C%20STATE-purple?style=flat-square)
 ![License](https://img.shields.io/badge/LICENSE-MIT-blue?style=flat-square)
-![Deploy](https://img.shields.io/badge/▲%20DEPLOY-VERCEL-black?style=flat-square)
+
 
 </div>
 
