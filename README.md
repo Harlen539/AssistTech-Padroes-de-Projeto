@@ -1,229 +1,184 @@
-# AssistTech - Padrões de Projeto
+# AssistTech
 
-O **AssistTech** é uma aplicação web para abertura e gerenciamento de chamados de suporte técnico.  
-O projeto foi desenvolvido como trabalho acadêmico da disciplina de **Padrões de Projeto**, com foco na aplicação prática dos padrões **Factory Method** e **State**.
+AssistTech e uma aplicacao full-stack para abertura e gerenciamento de chamados de suporte tecnico. O projeto combina um front-end React/Vite com uma API Node.js/Express e demonstra os padroes de projeto **Factory Method** e **State**.
 
-## 📌 Sobre o projeto
+Tambem existe uma **Central de Ajuda com IA** para responder perguntas sobre o proprio projeto, codigo, rotas, telas, execucao e manutencao.
 
-O sistema tem como objetivo permitir que usuários registrem chamados de TI e acompanhem o andamento dos atendimentos. A aplicação possui uma interface administrativa moderna para visualização de métricas, listagem de chamados, cadastro de usuários, cadastro de técnicos e relatórios.
+## Funcionalidades
 
-Atualmente, o repositório contém a parte de **front-end** da aplicação, desenvolvida com React e Vite. O back-end será desenvolvido separadamente com Java Spring Boot.
+- Dashboard com metricas de chamados.
+- Listagem, criacao e detalhes de chamados.
+- Cadastro e listagem de usuarios.
+- Cadastro e listagem de tecnicos.
+- Relatorios com graficos.
+- Anexos de imagem em chamados.
+- Central de Ajuda com OpenAI Responses API no back-end.
+- Fallback local gratuito quando a OpenAI nao estiver disponivel.
 
-## 🚀 Funcionalidades
+## Tecnologias
 
-- Dashboard com visão geral dos chamados
-- Cards de métricas
-- Gráficos de chamados por status
-- Gráficos de chamados por categoria
-- Listagem de chamados
-- Tela de criação de novo chamado
-- Tela de detalhes do chamado
-- Cadastro e listagem de usuários
-- Cadastro e listagem de técnicos
-- Página de relatórios
-- Interface responsiva
-- Dados mockados para simulação visual
+Front-end:
 
-## 🧩 Padrões de Projeto
+- React
+- Vite
+- React Router DOM
+- Axios
+- Lucide React
+- Recharts
+- CSS
 
-Este projeto utiliza como base dois padrões de projeto principais:
+Back-end:
 
-### Factory Method
+- Node.js
+- Express
+- OpenAI SDK
+- Dotenv
+- Test runner nativo do Node
 
-**Tipo:** Padrão Criacional
-
-O padrão **Factory Method** será aplicado na criação dos chamados de acordo com sua categoria.
-
-Exemplo de categorias:
-
-- Hardware
-- Software
-- Rede
-- Acesso
-
-A ideia é centralizar a criação dos chamados em uma fábrica, evitando que a lógica de criação fique espalhada pelo sistema.
-
-### State
-
-**Tipo:** Padrão Comportamental
-
-O padrão **State** será aplicado no controle de status dos chamados.
-
-Fluxo esperado:
+## Estrutura
 
 ```text
-ABERTO -> EM_ATENDIMENTO -> RESOLVIDO -> FECHADO
-````
-
-Cada estado terá sua própria regra de transição, deixando o código mais organizado e evitando excesso de condicionais.
-
-## 🛠️ Tecnologias utilizadas
-
-### Front-end
-
-* React
-* Vite
-* JavaScript
-* React Router DOM
-* Axios
-* Lucide React
-* Recharts
-* CSS
-
-### Back-end planejado
-
-* Java
-* Spring Boot
-* Spring Web
-* Spring Data JPA
-* H2 Database ou PostgreSQL
-* Bean Validation
-
-## 📁 Estrutura atual do projeto
-
-```text
-AssistTech-Padroes-de-Projeto/
-│
-├── front-end/
-│   │
-│   ├── public/
-│   │   └── assets/
-│   │
-│   ├── src/
-│   │   ├── components/
-│   │   ├── data/
-│   │   ├── pages/
-│   │   ├── routes/
-│   │   ├── services/
-│   │   ├── styles/
-│   │   ├── utils/
-│   │   ├── App.jsx
-│   │   └── main.jsx
-│   │
-│   ├── index.html
-│   ├── package.json
-│   ├── package-lock.json
-│   └── vite.config.js
-│
-├── .gitignore
-├── LICENSE
-└── README.md
+AssistTech/
+  front-end/
+    src/
+      components/
+      data/
+      pages/
+      routes/
+      services/
+      styles/
+      utils/
+  back-end/
+    src/
+      controllers/
+      data/
+      factories/
+      middlewares/
+      repositories/
+      routes/
+      services/
+      states/
+      utils/
 ```
 
-## 📄 Páginas do front-end
+## Como rodar
 
-O front-end possui as seguintes páginas principais:
-
-```text
-src/pages/
-│
-├── Dashboard.jsx
-├── Chamados.jsx
-├── DetalhesChamado.jsx
-├── NovoChamado.jsx
-├── Relatorios.jsx
-├── Tecnicos.jsx
-└── Usuarios.jsx
-```
-
-## ▶️ Como rodar o projeto
-
-### 1. Clone o repositório
+Em um terminal:
 
 ```bash
-git clone https://github.com/Harlen539/AssistTech-Padroes-de-Projeto.git
+cd back-end
+npm install
+npm run dev
 ```
 
-### 2. Acesse a branch developers
+A API fica em `http://localhost:8080/api`.
 
-```bash
-cd AssistTech-Padroes-de-Projeto
-git checkout developers
-```
-
-### 3. Acesse a pasta do front-end
+Em outro terminal:
 
 ```bash
 cd front-end
-```
-
-### 4. Instale as dependências
-
-```bash
 npm install
-```
-
-### 5. Execute o projeto
-
-```bash
 npm run dev
 ```
 
-Depois, acesse o endereço exibido no terminal, geralmente:
+O Vite normalmente fica em `http://localhost:5173`.
+
+## Configuracao da OpenAI
+
+Crie `back-end/.env`:
+
+```bash
+OPENAI_API_KEY=sua_chave_da_openai
+OPENAI_MODEL=gpt-5.5
+OPENAI_MAX_OUTPUT_TOKENS=900
+OPENAI_LOCAL_MODE=false
+OPENAI_ALLOW_LOCAL_FALLBACK=true
+```
+
+Notas importantes:
+
+- A chave fica somente no back-end.
+- O front-end chama apenas `POST /api/assistente/perguntar`.
+- `gpt-5.5` e o modelo flagship atual recomendado pela documentacao oficial para raciocinio e codigo. Para reduzir custo/latencia, troque `OPENAI_MODEL` por um modelo menor habilitado na sua conta, como `gpt-5.4-mini` ou `gpt-5.4-nano`.
+- Para rodar sem custo de OpenAI, use `OPENAI_LOCAL_MODE=true`. Nesse modo a Central responde com base em respostas locais sobre o projeto.
+- Para deixar a IA trabalhar de verdade, mantenha `OPENAI_LOCAL_MODE=false`. Se a conta estiver sem quota ou credito, a rota retorna erro claro em vez de fingir resposta local.
+- Com `OPENAI_ALLOW_LOCAL_FALLBACK=true`, o back-end tenta a OpenAI primeiro e so usa apoio local se a API falhar por quota/chave/modelo.
+- ChatGPT Plus e API Platform sao cobrados separadamente; ter Plus nao libera creditos automaticos para `OPENAI_API_KEY`.
+
+## Fronteira cliente/servidor
+
+O cliente React nunca chama a OpenAI diretamente.
+
+Fluxo da Central de Ajuda:
 
 ```text
-http://localhost:5173
+CentralAjuda.jsx
+  -> front-end/src/services/api.js
+  -> POST http://localhost:8080/api/assistente/perguntar
+  -> back-end/src/services/assistenteService.js
+  -> OpenAI Responses API
 ```
 
-## 📦 Scripts disponíveis
+Isso protege `OPENAI_API_KEY` e deixa prompts, modelo e contexto sob controle do servidor.
+
+A tela tambem envia um resumo operacional do app aberto naquele momento: total de chamados, usuarios, tecnicos, chamados por status/categoria, nomes de usuarios e tecnicos, e os chamados mais recentes. Assim a IA consegue responder perguntas simples como "quantos usuarios temos?", "quais chamados estao em atendimento?" ou "quem atende Hardware?".
+
+## Padroes de projeto
+
+Factory Method:
+
+- `back-end/src/factories/chamados/ChamadoFactory.js`
+- `back-end/src/factories/chamados/*ChamadoCreator.js`
+
+State:
+
+- `back-end/src/states/chamados/ChamadoStatusContext.js`
+- `back-end/src/states/chamados/*State.js`
+
+## Onde ajustar a IA depois
+
+- Modelo: `OPENAI_MODEL` em `back-end/.env`.
+- Prompt: constante `instructions` em `back-end/src/services/assistenteService.js`.
+- Arquivos de contexto: `contextFiles` em `back-end/src/services/codeContextService.js`.
+- Tamanho da resposta: `OPENAI_MAX_OUTPUT_TOKENS`.
+- Fallback local: `OPENAI_LOCAL_MODE` e `OPENAI_ALLOW_LOCAL_FALLBACK`.
+- Imagens: hoje o projeto trabalha com anexos enviados pelo usuario. Se quiser geracao de imagens por IA, implemente uma rota server-side no back-end para manter a chave protegida.
+
+## Validacao
+
+Back-end:
 
 ```bash
+cd back-end
+npm test
 npm run dev
 ```
 
-Executa o projeto em ambiente de desenvolvimento.
+Front-end:
 
 ```bash
+cd front-end
 npm run build
 ```
 
-Gera a versão de produção.
+Checklist manual:
+
+- Abrir `http://localhost:5173`.
+- Acessar Central de Ajuda.
+- Perguntar: "Como rodo o front-end e o back-end?"
+- Perguntar: "Onde o Factory Method foi aplicado?"
+- Perguntar: "Como funciona a troca de status com State?"
+- Criar um chamado com anexo e conferir o detalhe do chamado.
+
+## Deploy
+
+- Configure `OPENAI_API_KEY`, `OPENAI_MODEL`, `OPENAI_MAX_OUTPUT_TOKENS` e `OPENAI_LOCAL_MODE` no ambiente do provedor.
+- Publique o back-end como API Node/Express.
+- Publique o front-end como app estatico Vite.
+- Em producao, ajuste a URL da API no front-end se ela nao estiver em `localhost:8080`.
+
+No front-end, isso pode ser feito com:
 
 ```bash
-npm run preview
+VITE_API_URL=https://sua-api.com/api
 ```
-
-Executa uma prévia da versão de produção.
-
-## 🔗 Integração com API
-
-O front-end foi preparado para consumir futuramente uma API REST.
-
-Endpoints planejados:
-
-```text
-GET    /api/chamados
-GET    /api/chamados/{id}
-POST   /api/chamados
-PUT    /api/chamados/{id}/status
-
-GET    /api/usuarios
-POST   /api/usuarios
-
-GET    /api/tecnicos
-POST   /api/tecnicos
-```
-
-Enquanto o back-end não estiver pronto, o sistema pode utilizar dados mockados para simulação visual.
-
-## 🎨 Identidade visual
-
-O projeto utiliza uma identidade visual moderna, com foco em uma interface administrativa limpa e profissional.
-
-Principais características:
-
-* Sidebar azul escura
-* Cards brancos com bordas arredondadas
-* Botões em azul vibrante
-* Gráficos com cores por status
-* Badges de prioridade e status
-* Layout responsivo
-* Visual inspirado em sistemas SaaS administrativos
-
-## 📜 Licença
-
-Este projeto está licenciado sob a licença MIT.
-
-[1]: https://github.com/Harlen539/AssistTech-Padroes-de-Projeto/tree/developers "GitHub - Harlen539/AssistTech-Padroes-de-Projeto at developers · GitHub"
-[2]: https://github.com/Harlen539/AssistTech-Padroes-de-Projeto/tree/developers/front-end "AssistTech-Padroes-de-Projeto/front-end at developers · Harlen539/AssistTech-Padroes-de-Projeto · GitHub"
-[3]: https://raw.githubusercontent.com/Harlen539/AssistTech-Padroes-de-Projeto/developers/front-end/package.json "raw.githubusercontent.com"

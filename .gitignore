@@ -6,4 +6,6 @@ front-end/assisttech-dashboard-final.png
 .DS_Store
 .env
 .env.*
+!.env.example
+!**/.env.example
 back-end/node_modules/
