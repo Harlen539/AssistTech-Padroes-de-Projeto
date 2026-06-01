@@ -2,20 +2,17 @@
 
 <div align="left">
 
-![Status](https://img.shields.io/badge/STATUS-ONLINE-brightgreen?style=flat-square)
-![React](https://img.shields.io/badge/⚛%20REACT-18-61DAFB?style=flat-square)
-![Vite](https://img.shields.io/badge/⚡%20VITE-6-646CFF?style=flat-square)
-![JavaScript](https://img.shields.io/badge/JS%20JAVASCRIPT-ES6%2B-F7DF1E?style=flat-square)
-![CSS](https://img.shields.io/badge/CSS-3-1572B6?style=flat-square)
-![Node.js](https://img.shields.io/badge/NODE.JS-BACK--END-339933?style=flat-square)
-![Express](https://img.shields.io/badge/EXPRESS-API-000000?style=flat-square)
-![OpenAI](https://img.shields.io/badge/OPENAI-IA-412991?style=flat-square)
-![Patterns](https://img.shields.io/badge/PATTERNS-FACTORY%20%7C%20STATE-purple?style=flat-square)
-![License](https://img.shields.io/badge/LICENSE-MIT-blue?style=flat-square)
-
+![Status](https://img.shields.io/badge/Status-Online-20232A?style=flat-square&labelColor=20232A&color=22C55E)
+![React](https://img.shields.io/badge/React-18-20232A?style=flat-square&logo=react&logoColor=61DAFB)
+![Vite](https://img.shields.io/badge/Vite-6-20232A?style=flat-square&logo=vite&logoColor=646CFF)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-20232A?style=flat-square&logo=javascript&logoColor=F7DF1E)
+![CSS3](https://img.shields.io/badge/CSS3-20232A?style=flat-square&logo=css3&logoColor=1572B6)
+![Node.js](https://img.shields.io/badge/Node.js-20232A?style=flat-square&logo=node.js&logoColor=339933)
+![Express](https://img.shields.io/badge/Express-20232A?style=flat-square&logo=express&logoColor=white)
+![OpenAI](https://img.shields.io/badge/OpenAI-20232A?style=flat-square&logo=openai&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-20232A?style=flat-square&labelColor=20232A&color=2563EB)
 
 </div>
-
 ---
 
 ## 📖 Sobre o projeto
