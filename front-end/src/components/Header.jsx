@@ -1,8 +1,8 @@
-import { Bell, ChevronDown, Menu, Plus, Search } from 'lucide-react';
+import { Bell, ChevronDown, Menu, Search } from 'lucide-react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Header({ title, subtitle, onMenuClick, onNovoChamado }) {
+function Header({ title, subtitle, onMenuClick }) {
   const navigate = useNavigate();
   const [busca, setBusca] = useState('');
   const [notificacoesAbertas, setNotificacoesAbertas] = useState(false);
@@ -33,14 +33,6 @@ function Header({ title, subtitle, onMenuClick, onNovoChamado }) {
           placeholder="Buscar chamados, usuários, técnicos..."
         />
       </form>
-      <button
-        className="primary-button header-new"
-        type="button"
-        onClick={() => (onNovoChamado ? onNovoChamado() : navigate('/novo-chamado'))}
-      >
-        <Plus size={18} />
-        Novo Chamado
-      </button>
       <div className="header-action-wrap">
         <button
           type="button"

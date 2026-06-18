@@ -23,6 +23,9 @@ const periodoLabels = {
   30: 'Últimos 30 dias',
 };
 
+const categoriaCores = ['#2563eb', '#16a34a', '#f59e0b', '#7c3aed'];
+const tecnicoCores = ['#0f766e', '#2563eb', '#7c3aed', '#db2777'];
+
 function renderPieLabel({ cx, cy, midAngle, innerRadius, outerRadius, payload }) {
   const radius = innerRadius + (outerRadius - innerRadius) * 0.56;
   const radians = (-midAngle * Math.PI) / 180;
@@ -33,6 +36,18 @@ function renderPieLabel({ cx, cy, midAngle, innerRadius, outerRadius, payload })
     <text x={x} y={y} fill="#fff" textAnchor="middle" dominantBaseline="central" className="pie-label">
       {payload.percent}
     </text>
+  );
+}
+
+function ChartTooltip({ active, payload, label }) {
+  if (!active || !payload?.length) return null;
+
+  const item = payload[0];
+  return (
+    <div className="chart-tooltip">
+      <span>{label ?? item.name}</span>
+      <strong>{item.value} chamado{item.value === 1 ? '' : 's'}</strong>
+    </div>
   );
 }
 
@@ -60,15 +75,16 @@ function DonutReport({ data, total }) {
               data={data}
               dataKey="value"
               nameKey="name"
-              innerRadius={57}
-              outerRadius={103}
+              innerRadius={62}
+              outerRadius={101}
+              paddingAngle={3}
               labelLine={false}
               label={renderPieLabel}
               isAnimationActive={false}
             >
               {data.map((item) => <Cell key={item.name} fill={item.color} />)}
             </Pie>
-            <Tooltip />
+            <Tooltip content={<ChartTooltip />} cursor={false} />
           </PieChart>
         </ResponsiveContainer>
         <span className="donut-center"><strong>{total}</strong><small>Total de<br />chamados</small></span>
@@ -129,11 +145,12 @@ function Relatorios({ chamados, onMenuClick }) {
           <ChartCard title="Chamados por Categoria" className="report-card" footer={<><span>Total de chamados no período</span><strong>{total}</strong></>}>
             <ResponsiveContainer width="100%" height={222}>
               <BarChart data={categoriaData} margin={{ top: 28, right: 12, bottom: 8, left: 0 }}>
-                <CartesianGrid vertical={false} stroke="#e6ecf4" />
-                <XAxis dataKey="name" tickLine={false} axisLine={{ stroke: '#cad4e2' }} />
-                <YAxis tickLine={false} axisLine={false} />
-                <Tooltip />
-                <Bar dataKey="value" fill="#1472ed" radius={[4, 4, 0, 0]} isAnimationActive={false}>
+                <CartesianGrid vertical={false} stroke="#eef3f8" strokeDasharray="3 5" />
+                <XAxis dataKey="name" tickLine={false} axisLine={false} tick={{ fill: '#667085', fontSize: 12 }} />
+                <YAxis tickLine={false} axisLine={false} tick={{ fill: '#8a96a8', fontSize: 12 }} allowDecimals={false} />
+                <Tooltip content={<ChartTooltip />} cursor={{ fill: '#f5f8fc' }} />
+                <Bar dataKey="value" radius={[8, 8, 0, 0]} isAnimationActive={false}>
+                  {categoriaData.map((item, index) => <Cell key={item.name} fill={categoriaCores[index % categoriaCores.length]} />)}
                   <LabelList dataKey="value" position="top" fill="#253348" />
                 </Bar>
               </BarChart>
@@ -145,11 +162,12 @@ function Relatorios({ chamados, onMenuClick }) {
           <ChartCard title="Técnicos com mais atendimentos" className="report-card" footer={<><span>Total de atendimentos no período</span><strong>{total}</strong></>}>
             <ResponsiveContainer width="100%" height={222}>
               <BarChart layout="vertical" data={tecnicosData} margin={{ top: 8, right: 44, bottom: 5, left: 22 }}>
-                <CartesianGrid horizontal={false} stroke="#edf1f6" />
-                <XAxis type="number" tickLine={false} axisLine={false} />
-                <YAxis dataKey="name" type="category" tickLine={false} axisLine={false} width={118} />
-                <Tooltip />
-                <Bar dataKey="value" fill="#1472ed" radius={[0, 4, 4, 0]} isAnimationActive={false}>
+                <CartesianGrid horizontal={false} stroke="#eef3f8" strokeDasharray="3 5" />
+                <XAxis type="number" tickLine={false} axisLine={false} tick={{ fill: '#8a96a8', fontSize: 12 }} allowDecimals={false} />
+                <YAxis dataKey="name" type="category" tickLine={false} axisLine={false} tick={{ fill: '#667085', fontSize: 12 }} width={118} />
+                <Tooltip content={<ChartTooltip />} cursor={{ fill: '#f5f8fc' }} />
+                <Bar dataKey="value" radius={[0, 8, 8, 0]} isAnimationActive={false}>
+                  {tecnicosData.map((item, index) => <Cell key={item.name} fill={tecnicoCores[index % tecnicoCores.length]} />)}
                   <LabelList dataKey="value" position="right" fill="#253348" />
                 </Bar>
               </BarChart>

@@ -1,24 +1,36 @@
 import {
+  BarChart3,
+  ChevronRight,
   CircleHelp,
   ClipboardList,
   LayoutGrid,
   PlusCircle,
-  Users,
   UserRoundCog,
-  BarChart3,
-  ChevronRight,
+  Users,
   X,
 } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 
-const itens = [
+const atendimento = [
   { nome: 'Dashboard', rota: '/dashboard', icon: LayoutGrid },
   { nome: 'Chamados', rota: '/chamados', icon: ClipboardList },
   { nome: 'Novo Chamado', rota: '/novo-chamado', icon: PlusCircle },
+];
+
+const gestao = [
   { nome: 'Usuários', rota: '/usuarios', icon: Users },
   { nome: 'Técnicos', rota: '/tecnicos', icon: UserRoundCog },
   { nome: 'Relatórios', rota: '/relatorios', icon: BarChart3 },
 ];
+
+function SidebarLink({ nome, rota, icon: Icon, onClose }) {
+  return (
+    <NavLink key={rota} to={rota} onClick={onClose} className={({ isActive }) => (isActive ? 'active' : '')}>
+      <span className="nav-icon"><Icon /></span>
+      <span>{nome}</span>
+    </NavLink>
+  );
+}
 
 function Sidebar({ open, onClose }) {
   return (
@@ -30,15 +42,13 @@ function Sidebar({ open, onClose }) {
         </button>
       </div>
       <nav className="sidebar-nav" aria-label="Menu principal">
-        {itens.map(({ nome, rota, icon: Icon }) => (
-          <NavLink key={rota} to={rota} onClick={onClose} className={({ isActive }) => (isActive ? 'active' : '')}>
-            <Icon />
-            <span>{nome}</span>
-          </NavLink>
-        ))}
+        <span className="nav-section-label">Atendimento</span>
+        {atendimento.map((item) => <SidebarLink key={item.rota} {...item} onClose={onClose} />)}
+        <span className="nav-section-label">Gestão</span>
+        {gestao.map((item) => <SidebarLink key={item.rota} {...item} onClose={onClose} />)}
       </nav>
       <NavLink className="sidebar-footer" to="/central-ajuda" onClick={onClose}>
-        <CircleHelp />
+        <span className="nav-icon"><CircleHelp /></span>
         <span>Central de Ajuda</span>
         <ChevronRight />
       </NavLink>

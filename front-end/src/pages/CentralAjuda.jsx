@@ -4,12 +4,12 @@ import Header from '../components/Header';
 import { perguntarAssistente } from '../services/api';
 
 const sugestoes = [
-  'Como eu rodo o front-end e o back-end?',
-  'Onde o Factory Method foi aplicado?',
-  'Como funciona a troca de status com State?',
+  'Quais servicos o AssistTech atende?',
+  'Quais chamados estao em atendimento?',
   'Quais sao os nomes dos tecnicos?',
   'Quantos usuarios temos?',
-  'Quais chamados estao em atendimento?',
+  'Como funciona a troca de status dos chamados?',
+  'Qual rota cria um novo chamado?',
 ];
 
 const mensagensErroAssistente = {
@@ -78,7 +78,7 @@ function CentralAjuda({ chamados, usuarios, tecnicos, onMenuClick }) {
     {
       id: 'boas-vindas',
       role: 'assistant',
-      content: 'Oi. Posso tirar duvidas sobre o codigo, rotas, telas, API, padroes de projeto e como usar o AssistTech.',
+      content: 'Oi. Eu respondo somente sobre o AssistTech: chamados, usuarios, tecnicos, servicos, status, telas, rotas, API e codigo do projeto.',
     },
   ]);
   const [pergunta, setPergunta] = useState('');
@@ -147,7 +147,7 @@ function CentralAjuda({ chamados, usuarios, tecnicos, onMenuClick }) {
     <>
       <Header
         title="Central de Ajuda"
-        subtitle="Assistente inteligente para duvidas do AssistTech"
+        subtitle="Assistente focado somente no AssistTech"
         onMenuClick={onMenuClick}
       />
       <div className="page-content help-page">
@@ -158,7 +158,7 @@ function CentralAjuda({ chamados, usuarios, tecnicos, onMenuClick }) {
               <span>OpenAI</span>
             </div>
             <h2>IA do projeto</h2>
-            <p>Tira duvidas sobre uso, chamados, usuarios, tecnicos, telas e codigo. A chave fica protegida no servidor.</p>
+            <p>Responde apenas sobre chamados, usuarios, tecnicos, servicos, telas e codigo do AssistTech. A chave fica protegida no servidor.</p>
             <div className="help-summary">
               {resumo.map((item) => (
                 <span key={item.label}>
@@ -169,8 +169,8 @@ function CentralAjuda({ chamados, usuarios, tecnicos, onMenuClick }) {
             </div>
             <div className="help-topics">
               <span><Code2 /> Codigo</span>
-              <span><TerminalSquare /> Execucao</span>
-              <span><Bot /> Padroes</span>
+              <span><TerminalSquare /> Rotas</span>
+              <span><Bot /> Chamados</span>
             </div>
           </div>
 
@@ -210,7 +210,7 @@ function CentralAjuda({ chamados, usuarios, tecnicos, onMenuClick }) {
                 ref={inputRef}
                 value={pergunta}
                 onChange={(event) => setPergunta(event.target.value)}
-                placeholder="Pergunte sobre chamados, usuarios, tecnicos, telas, API ou codigo"
+                placeholder="Pergunte sobre chamados, usuarios, tecnicos, servicos, telas, API ou codigo"
               />
               <button type="submit" className="primary-button" disabled={enviando || !pergunta.trim()}>
                 <Send />

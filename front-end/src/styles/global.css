@@ -1,21 +1,21 @@
 :root {
   font-family: Inter, "Segoe UI", Arial, sans-serif;
-  color: #0f172a;
-  background: #f5f8fc;
+  color: #102033;
+  background: #f6f8fb;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   --navy: #082b5f;
   --navy-deep: #061b3a;
-  --blue: #006bff;
-  --blue-bright: #0d79ff;
-  --cyan: #00d4ff;
-  --background: #f5f8fc;
+  --blue: #0f6fe8;
+  --blue-bright: #2b7ff0;
+  --cyan: #06b6d4;
+  --background: #f6f8fb;
   --card: #ffffff;
-  --border: #e2e8f0;
-  --text: #0f172a;
+  --border: #dde6f0;
+  --text: #102033;
   --muted: #64748b;
-  --shadow: 0 5px 18px rgba(8, 43, 95, 0.06);
-  --radius: 14px;
+  --shadow: 0 8px 24px rgba(15, 35, 62, 0.06);
+  --radius: 12px;
 }
 
 * {
@@ -32,12 +32,6 @@ body,
 body {
   min-width: 320px;
   font-size: 14px;
-}
-
-@media (min-width: 1081px) {
-  body {
-    zoom: 0.8;
-  }
 }
 
 h1,
@@ -77,14 +71,14 @@ a {
 }
 
 .primary-button {
-  background: linear-gradient(135deg, #006bff, #075fe3);
+  background: linear-gradient(135deg, #0f6fe8, #0d61cc);
   border: 1px solid var(--blue);
   color: white;
   box-shadow: 0 5px 12px rgba(8, 103, 232, 0.17);
 }
 
 .primary-button:hover {
-  background: linear-gradient(135deg, #075fe3, #0755c9);
+  background: linear-gradient(135deg, #0d61cc, #0a54b5);
 }
 
 .outline-button {

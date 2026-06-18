@@ -24,18 +24,18 @@
 
 .tickets-table th,
 .directory-table th {
-  background: #fafbfd;
-  color: #344054;
+  background: #f8fafc;
+  color: #53627a;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 700;
   height: 44px;
   text-align: left;
 }
 
 .tickets-table th,
 .tickets-table td {
-  border-bottom: 1px solid #e8edf4;
-  padding: 9px 12px;
+  border-bottom: 1px solid #edf2f7;
+  padding: 10px 12px;
   white-space: nowrap;
 }
 
@@ -52,7 +52,7 @@
 }
 
 .clickable-row:hover td {
-  background: #f7faff;
+  background: #f8fbff;
 }
 
 .tickets-table td:nth-child(2) {
@@ -129,7 +129,7 @@
 .directory-search {
   background: white;
   border: 1px solid #dae2ee;
-  border-radius: 7px;
+  border-radius: 8px;
 }
 
 .filter-select {

@@ -8,7 +8,11 @@ const permitirFallbackLocal = process.env.OPENAI_ALLOW_LOCAL_FALLBACK === 'true'
 
 const instructions = [
   'Voce e a IA da Central de Ajuda do AssistTech, um sistema web para abertura e gerenciamento de chamados de suporte tecnico.',
-  'Responda em portugues do Brasil, com linguagem direta, pratica e adequada para estudantes/desenvolvedores mantendo o projeto.',
+  'Responda em portugues do Brasil, com linguagem direta, pratica e adequada para usuarios, estudantes e desenvolvedores mantendo o projeto.',
+  'Escopo obrigatorio: responda somente sobre o AssistTech e seus dados, incluindo chamados, usuarios, tecnicos, servicos/categorias de atendimento, status, prioridades, setores, dashboard, relatorios, telas, rotas, API, execucao, arquitetura e manutencao do codigo.',
+  'Se a pergunta nao for sobre o AssistTech, recuse de forma curta e redirecione para perguntas sobre chamados, usuarios, tecnicos, servicos, rotas, telas ou codigo do projeto.',
+  'Nao responda perguntas gerais de mundo, politica, esportes, noticias, matematica fora do sistema, entretenimento, conselhos pessoais, outros projetos ou qualquer tema sem relacao clara com o AssistTech.',
+  'Considere "servicos" como as categorias de atendimento do projeto: Hardware, Software, Rede e Acesso.',
   'Atue como tira-duvidas real do projeto: responda sobre uso do sistema, dados atuais da tela, chamados, usuarios, tecnicos, fluxo de atendimento, rotas, telas e manutencao do codigo.',
   'Classifique a intencao antes de responder: perguntas com "quantos", "quais", "nomes", "lista", "temos", "estao", "quem atende" ou "qual chamado" devem usar os dados operacionais; perguntas com "codigo", "arquivo", "rota", "service", "controller", "factory", "state", "API" ou "como foi implementado" devem explicar a parte tecnica.',
   'Use o contexto do codigo e o contexto operacional enviados pelo servidor. Se uma informacao nao aparecer nesses contextos, diga que nao foi possivel confirmar e indique onde verificar.',
@@ -17,6 +21,102 @@ const instructions = [
   'Nao responda como estudio de campanha ou marketing. Nao invente credenciais e nunca revele chaves de API.',
   'A chave OPENAI_API_KEY fica apenas no back-end; o front-end deve chamar somente a rota /api/assistente/perguntar.',
 ].join(' ');
+
+const mensagemForaDoEscopo = [
+  'Eu so posso responder sobre o AssistTech.',
+  '',
+  'Posso ajudar com chamados, usuarios, tecnicos, servicos/categorias, status, prioridades, dashboard, relatorios, telas, rotas, API ou codigo do projeto.',
+].join('\n');
+
+const termosDoProjeto = [
+  'assisttech',
+  'chamado',
+  'chamados',
+  'ticket',
+  'tickets',
+  'usuario',
+  'usuarios',
+  'usuário',
+  'usuários',
+  'tecnico',
+  'tecnicos',
+  'técnico',
+  'técnicos',
+  'servico',
+  'servicos',
+  'serviço',
+  'serviços',
+  'categoria',
+  'categorias',
+  'hardware',
+  'software',
+  'rede',
+  'acesso',
+  'status',
+  'prioridade',
+  'prioridades',
+  'setor',
+  'setores',
+  'dashboard',
+  'relatorio',
+  'relatorios',
+  'relatório',
+  'relatórios',
+  'grafico',
+  'graficos',
+  'gráfico',
+  'gráficos',
+  'central de ajuda',
+  'ia',
+  'openai',
+  'api',
+  'rota',
+  'rotas',
+  'endpoint',
+  'front',
+  'frontend',
+  'front-end',
+  'back',
+  'backend',
+  'back-end',
+  'localhost',
+  'rodar',
+  'executar',
+  'codigo',
+  'código',
+  'arquivo',
+  'service',
+  'controller',
+  'factory',
+  'state',
+  'anexo',
+  'imagem',
+  'foto',
+  'cadastro',
+  'cadastrar',
+  'criar',
+  'listar',
+  'editar',
+  'remover',
+  'atendimento',
+  'aberto',
+  'resolvido',
+  'fechado',
+];
+
+const saudacoesPermitidas = [
+  'oi',
+  'ola',
+  'olá',
+  'bom dia',
+  'boa tarde',
+  'boa noite',
+  'ajuda',
+  'o que voce faz',
+  'o que você faz',
+  'como voce pode ajudar',
+  'como você pode ajudar',
+];
 
 const respostasLocais = [
   {
@@ -93,6 +193,32 @@ const respostasLocais = [
       'A chamada HTTP fica em `front-end/src/services/api.js`, na funcao `criarChamado`.',
       'No back-end, `back-end/src/services/chamadoService.js` valida campos obrigatorios e usa `ChamadoFactory` para criar o chamado conforme a categoria.',
       'Os dados ficam em memoria por meio de `back-end/src/repositories/InMemoryRepository.js`.',
+    ].join('\n'),
+  },
+  {
+    termos: ['servico', 'servicos', 'serviço', 'serviços', 'categoria', 'categorias'],
+    resposta: [
+      'No AssistTech, os servicos sao representados pelas categorias de chamado.',
+      '',
+      '- Hardware: problemas fisicos, equipamentos, perifericos e computadores.',
+      '- Software: erros de sistema, instalacao, atualizacao e aplicativos.',
+      '- Rede: internet, VPN, conexao e instabilidade de rede.',
+      '- Acesso: permissoes, liberacao de usuario e acesso a sistemas.',
+      '',
+      'Essas categorias aparecem no formulario de novo chamado, no dashboard, nos relatorios e na atribuicao de tecnicos.',
+    ].join('\n'),
+  },
+  {
+    termos: ['status', 'aberto', 'atendimento', 'resolvido', 'fechado', 'fluxo'],
+    resposta: [
+      'O fluxo de status dos chamados no AssistTech e:',
+      '',
+      '1. Aberto',
+      '2. Em Atendimento',
+      '3. Resolvido',
+      '4. Fechado',
+      '',
+      'A troca de status e controlada pelo padrao State no back-end, em `back-end/src/states/chamados`.',
     ].join('\n'),
   },
   {
@@ -183,6 +309,19 @@ function contemAlgum(texto, termos) {
   return termos.some((termo) => texto.includes(normalizarTermos(termo)));
 }
 
+function perguntaEstaNoEscopo(pergunta) {
+  const texto = normalizarTermos(pergunta);
+
+  return contemAlgum(texto, termosDoProjeto) || saudacoesPermitidas.some((saudacao) => texto === normalizarTermos(saudacao));
+}
+
+function respostaForaDoEscopo() {
+  return {
+    resposta: mensagemForaDoEscopo,
+    modelo: 'escopo-assisttech',
+  };
+}
+
 function formatarLista(lista, formatador, vazio = 'Nenhum item encontrado.') {
   if (!Array.isArray(lista) || lista.length === 0) {
     return vazio;
@@ -202,6 +341,8 @@ function responderComContextoOperacional(pergunta, contextoAplicacao) {
   const pedeTecnicos = contemAlgum(perguntaNormalizada, ['tecnico', 'tecnicos', 'técnico', 'técnicos', 'atendente', 'atendentes']);
   const pedeUsuarios = contemAlgum(perguntaNormalizada, ['usuario', 'usuarios', 'usuário', 'usuários']);
   const pedeChamados = contemAlgum(perguntaNormalizada, ['chamado', 'chamados', 'ticket', 'tickets']);
+  const pedeServicos = contemAlgum(perguntaNormalizada, ['servico', 'servicos', 'categoria', 'categorias']);
+  const pedeStatus = contemAlgum(perguntaNormalizada, ['status', 'aberto', 'atendimento', 'resolvido', 'fechado']);
   const pedeCodigo = contemAlgum(perguntaNormalizada, [
     'codigo',
     'código',
@@ -220,6 +361,28 @@ function responderComContextoOperacional(pergunta, contextoAplicacao) {
     'funcao',
     'função',
   ]);
+
+  if (pedeServicos && !pedeCodigo) {
+    return [
+      'Os servicos/categorias do AssistTech sao: Hardware, Software, Rede e Acesso.',
+      '',
+      resumo.chamadosPorCategoria
+        ? `Chamados por categoria no contexto atual: ${Object.entries(resumo.chamadosPorCategoria).map(([categoria, total]) => `${categoria}: ${total}`).join(', ')}.`
+        : 'Nao recebi a divisao por categoria no contexto atual.',
+      '',
+      formatarLista(tecnicos, (tecnico) => `- ${tecnico.especialidade}: ${tecnico.nome}`, 'Nao recebi tecnicos no contexto atual.'),
+    ].join('\n');
+  }
+
+  if (pedeStatus && pedeLista && !pedeCodigo) {
+    return [
+      'Os status do AssistTech seguem este fluxo: Aberto -> Em Atendimento -> Resolvido -> Fechado.',
+      '',
+      resumo.chamadosPorStatus
+        ? `No contexto atual: ${Object.entries(resumo.chamadosPorStatus).map(([status, total]) => `${status}: ${total}`).join(', ')}.`
+        : 'Nao recebi a divisao por status no contexto atual.',
+    ].join('\n');
+  }
 
   if (pedeTecnicos && pedeLista && !pedeCodigo) {
     return [
@@ -382,6 +545,10 @@ const assistenteService = {
   async perguntar({ pergunta, historico, contextoAplicacao }) {
     if (!pergunta || String(pergunta).trim() === '') {
       throw new AppError('Informe uma pergunta para a central de ajuda.', 422, 'QUESTION_REQUIRED');
+    }
+
+    if (!perguntaEstaNoEscopo(pergunta)) {
+      return respostaForaDoEscopo();
     }
 
     if (!process.env.OPENAI_API_KEY || process.env.OPENAI_LOCAL_MODE === 'true') {
